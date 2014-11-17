@@ -15,12 +15,21 @@ Here you could at the list.html change the ```html<th>```like below:
 ```html
  <thead>
     <th>
-        <a  ng-click="sortField = 'Text'; reverse = !reverse">Todo</a>
-        <span ng-show="reverse==true" class="icon-arrow-down"><i></i></span>
-        <span ng-show="reverse==false" class="icon-arrow-up"><i></i></span>
+      <a ng-click="sortField='Text'; reverse=!reverse">Todo</a> 
+        <span ng-show="reverse==true && sortField=='Text'" ><i class="glyphicon glyphicon-arrow-down"></i></span>
+        <span ng-show="reverse==false && sortField=='Text'" ><i class="glyphicon glyphicon-arrow-up"></i></span>       
     </th>
-    <th><a  ng-click="sortField = 'Priority'; reverse = !reverse">Priority</a></th>
-   <th><a  ng-click="sortField = 'DueDate'; reverse = !reverse">Due</a></th>
+    <th>
+        <a ng-click="sortField='Priority'; reverse=!reverse">Priority</a>     
+        <span ng-show="reverse==true && sortField=='Priority'" ><i class="glyphicon glyphicon-arrow-down"></i></span>
+        <span ng-show="reverse==false && sortField=='Priority'"><i class="glyphicon glyphicon-arrow-up"></i></span>       
+    </th>
+    <th>
+        <a ng-click="sortField='DueDate'; reverse=!reverse">DueDate</a>   
+        <span ng-show="reverse==true && sortField=='DueDate'" ><i class ="glyphicon glyphicon-arrow-down"></i></span>
+        <span ng-show="reverse==false && sortField=='DueDate'" ><i class="glyphicon glyphicon-arrow-up"></i></span>       
+    </th>
+  
     </thead>
 ```
     
@@ -29,9 +38,9 @@ for the query just add this to the ```html<tr>```
 <tr ng-repeat="todo in items | filter:query | orderBy:sortField:reverse">
 ```
 Then you could simpfy the listController like below
-```
+```html
 $scope.search = function () {
-        Todo.query({ q: $scope.query, limit: $scope.limit, offset: $scope.offset },
+        Todo.query({ limit: $scope.limit, offset: $scope.offset },
             function (items) {
                 var cnt = items.length;
                 $scope.no_more = cnt < 20;
@@ -39,7 +48,23 @@ $scope.search = function () {
             }
         );
     };
-```    
+```  
+
+The backend method also could simpify like this, I mean the Todocontroller in your API
+```html
+
+ public IQueryable<Todo> GetTodoes(int? limit = null, int offset = 0)
+        {
+            IQueryable<Todo> items = db.Todoes;
+
+            if (offset > 0) items = items.Skip(offset);
+            if (limit.HasValue) items = items.Take(limit.Value);
+            return items;
+        }
+
+```
+
+
   if I got time, I will update a new impoved version to it.
   
   Have fun!
