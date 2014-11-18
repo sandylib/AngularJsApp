@@ -13,6 +13,8 @@ There are some points I like to point out:
 
 2)In the Video, to remove return xml result is not necessary, because for what result will return it up to the http quest. if you quest Json result, api smart enought will return json result for you.And when you using angularjs to make request it indeed ask for json result.
 
+3)In the video that didn't provide customize direction solution,but in my files I already included it.
+
 The imporve is here you could at the list.html change the ```html<th>```like below:
 ```html
  <thead>
