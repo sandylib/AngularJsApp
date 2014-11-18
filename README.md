@@ -1,17 +1,19 @@
 AngularJs CRUD Backedn using asp.net API
 ============
 
-It has been build by using AngularJs and working with asp.net mvc as backend.
+It has been build by using AngularJs and working with asp.net API as backend.
 
 This is what I follow with one video in youtube.com https://www.youtube.com/watch?v=Ja2xDrtylBw
 
-It take me a while to figure out all of this. It works, so I put it here hope that could help other people.
+It take me a while to figure out all of this,Don't know why there are dependents is missing in the video It works, so I put it here hope that could help other people.
 
-For the sort and query in this a sample I followed what the video did. But It is totally not necesely.
+There are some points I like to point out:
 
-Because angularjs could do the sort and query so don't need to retrieve all the info from service. that will be save time.
+1)For the sort and query in this a sample I followed what the video did. But It is totally not necessary.Because angularjs could do the sort and query so don't need to retrieve all the info from service again. that will be save time for retrieve data.
 
-Here you could at the list.html change the ```html<th>```like below:
+2)In the Video, to remove return xml result is not necessary, because for what result will return it up to the http quest. if you quest Json result, api smart enought will return json result for you.And when you using angularjs to make request it indeed ask for json result.
+
+The imporve is here you could at the list.html change the ```html<th>```like below:
 ```html
  <thead>
     <th>
@@ -64,7 +66,7 @@ The backend method also could simpify like this, I mean the Todocontroller in yo
 
 ```
 
-In the Video, to remove the xml is not necessary, because for what result will return it up to the http quest. if you quest Json result, api smart enought will return json result for you.
+
 
   if I got time, I will update a new impoved version to it.
   
