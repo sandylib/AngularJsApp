@@ -55,8 +55,8 @@ The backend method also could simpify like this, I mean the Todocontroller in yo
 
  public IQueryable<Todo> GetTodoes(int? limit = null, int offset = 0)
         {
-            IQueryable<Todo> items = db.Todoes;
-
+            IQueryable<Todo> items = db.Todoes.OrderBy(r=>r.Priority);
+            //the skip must follew by OrderBy, otherwise will return 500 error
             if (offset > 0) items = items.Skip(offset);
             if (limit.HasValue) items = items.Take(limit.Value);
             return items;
@@ -64,6 +64,7 @@ The backend method also could simpify like this, I mean the Todocontroller in yo
 
 ```
 
+In the Video, to remove the xml is not necessary, because for what result will return it up to the http quest. if you quest Json result, api smart enought will return jason for you.
 
   if I got time, I will update a new impoved version to it.
   
