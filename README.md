@@ -64,7 +64,7 @@ The backend method also could simpify like this, I mean the Todocontroller in yo
 
 ```
 
-In the Video, to remove the xml is not necessary, because for what result will return it up to the http quest. if you quest Json result, api smart enought will return jason for you.
+In the Video, to remove the xml is not necessary, because for what result will return it up to the http quest. if you quest Json result, api smart enought will return json result for you.
 
   if I got time, I will update a new impoved version to it.
   
