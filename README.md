@@ -136,7 +136,7 @@ var CreateCtrl = function ($scope, $location, Todo) {
 
 ```
 
-  if I got time, I will update a new impoved version to it.
+
   
   Have fun!
 
