@@ -1,30 +1,36 @@
-﻿<h2>{{action}} Todo</h2>
-<form name="form" class="form-horizontal">
-    <div class="control-group" ng-class="{error: form.Text.$invalid}">
-        <label class="control-label" for="Text">Todo</label>
-        <div class="controls">
-            <input  type="text" ng-model="item.Text" id="Text" name="Text" placeholder="">
-        </div>
-    </div>
 
-    <div class="control-group" ng-class="{error: form.Priority.$invalid}">
-        <label class="control-label" for="Priority">Priority</label>
-        <div class="controls">
-            <input type="number" ng-model="item.Priority" id="Priority" name="Priority" placeholder="">
-        </div>
-    </div>
+<div class="row">
+    <div class="col-lg-5 col-lg-offset-2">
+        <h2>{{action}} Todo</h2>
+        <form name="form" class="form-horizontal" ng-submit="submitForm(form.$valid)" novalidate><!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+            <div class="form-group" ng-class="{ 'has-error' : form.Text.$invalid && !form.Text.$pristine }">
+                <label>Todo</label>
+                <input type="text" ng-model="item.Text" id="Text" name="Text" class="form-control" placeholder="" ng-minlength="3" ng-maxlength="200" required>
+                <p ng-show="form.Text.$invalid && !form.Text.$pristine" class="help-block">Todo is required.</p>
+                <p ng-show="form.Text.$error.minlength" class="help-block">Must great then list 3 characters.</p>
+                <p ng-show="form.Text.$error.maxlength" class="help-block">Must less then 200 characters.</p>
+            </div>
+
+            <div class="form-group" >
+                <label>Priority</label>
+                <input type="number" ng-model="item.Priority" id="Priority" class="form-control" name="Priority" placeholder="">
 
 
-    <div class="control-group" ng-class="{error: form.DueDate.$invalid}">
-        <label class="control-label" for="DueDate">DueDate</label>
-        <div class="controls">
-            <input type="text" ng-model="item.DueDate" id="DueDate" name="DueDate" placeholder="">
-        </div>
-    </div>
-    <div class="form-actions">
-        <button ng-click="save()" class="btn btn-primary">
-            {{action}}
-        </button>
-        <a href="#/" class="btn">Cancel</a>
-    </div>
-</form>
+            </div>
+
+
+            <div class="form-group" ng-class="{ 'has-error' : form.DueDate.$invalid && !form.DueDate.$pristine }">
+                <label>DueDate</label>
+                <input type="text" ng-model="item.DueDate" id="DueDate" name="DueDate" class="form-control" placeholder="" required>
+                <p ng-show="form.DueDate.$invalid && !form.DueDate.$pristine" class="help-block">DueDate is required.</p>
+            </div>
+            <div class="form-group">              
+
+                <button type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">{{action}}</button>
+                <a href="#/" class="btn">Cancel</a>
+            </div>
+        </form>
+   </div>
+   
+</div>
+
