@@ -118,18 +118,23 @@ var CreateCtrl = function ($scope, $location, Todo) {
 
 };
 
-var EditCtrl = function ($scope, $location, $routeParams, Todo) {
+var EditCtrl = function ($scope, $location,$routeParams, Todo) {
     $scope.action = "Update";
     var id = $routeParams.editId;
     $scope.item = Todo.get({ id: id });
 
-    $scope.save = function () {
-        Todo.update({ id: id }, $scope.item, function () {
-            $location.path('/');
+    $scope.submitForm = function (isValid) {
+        // check to make sure the form is completely valid
+        if (isValid) {
+            //then could create a new Todo         
+           
+            Todo.update({id:id},$scope.item, function () {
+                $location.path('/');
+            });
+        }
+    };
+};
 
-        });
-    }
-}
 
 
 
