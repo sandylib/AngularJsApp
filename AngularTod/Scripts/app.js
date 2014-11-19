@@ -105,10 +105,15 @@ var ListCtrl = function ($scope, $location, Todo) {
 
 var CreateCtrl = function ($scope, $location, Todo) {
     $scope.action = "Add";
-    $scope.save = function () {
-        Todo.update({id:id},$scope.item,function(){
-            $location.path('/');
-        });
+     $scope.submitForm = function (isValid) {
+        // check to make sure the form is completely valid
+        if (isValid) {
+            //then could create a new Todo             
+            //alert('our form is amazing');
+            Todo.save($scope.item, function () {
+                $location.path('/');
+            });
+        }
     };
 
 };
